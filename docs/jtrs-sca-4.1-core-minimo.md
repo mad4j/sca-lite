@@ -1,4 +1,4 @@
-# JTRS SCA 4.1 — sottoinsieme minimale requisiti Core Framework
+# JTRS SCA 4.1 — sottoinsieme minimo requisiti Core Framework
 
 ## Obiettivo
 Definire il set minimo di requisiti necessari per un Core Framework **SCA 4.1 compliant**, eliminando tutto ciò che non è strettamente necessario alla compliance.
@@ -15,7 +15,7 @@ Definire il set minimo di requisiti necessari per un Core Framework **SCA 4.1 co
 | MIN-CF-06 | **Naming/lookup** degli oggetti Core Framework. | Necessario per scoprire e collegare gli oggetti distribuiti nel dominio. | SCA 4.1 (uso naming CORBA per risoluzione oggetti CF) |
 | MIN-CF-07 | Accesso a file e pacchetti software per deploy (file manager minimo). | Il deployment richiede recupero descrittori/pacchetti software. | SCA 4.1 Core Framework IDL: interfacce file management (`CF::File*`) |
 
-## Requisiti rimovibili (non necessari al core minimale)
+## Requisiti rimovibili (non necessari al sottoinsieme minimale)
 
 I seguenti elementi possono essere rimossi in un framework minimale, purché non richiesti dal profilo operativo del prodotto:
 
@@ -34,4 +34,4 @@ Un requisito è mantenuto nel core **solo se**:
 2. è richiesto da interfacce CF standard (IDL) usate per interoperabilità;
 3. la sua rimozione impedirebbe l’esecuzione di un’applicazione SCA conforme.
 
-In caso contrario, il requisito è candidato alla rimozione dal core minimale.
+In caso contrario, il requisito è candidato alla rimozione dal sottoinsieme minimale.
