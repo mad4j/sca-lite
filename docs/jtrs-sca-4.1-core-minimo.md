@@ -15,6 +15,54 @@ Definire il set minimo di requisiti necessari per un Core Framework **SCA 4.1 co
 | MIN-CF-06 | **Naming/lookup** degli oggetti Core Framework. | Necessario per scoprire e collegare gli oggetti distribuiti nel dominio. | SCA 4.1 (uso naming CORBA per risoluzione oggetti CF) |
 | MIN-CF-07 | Accesso a file e pacchetti software per deploy (file manager minimo). | Il deployment richiede recupero descrittori/pacchetti software. | SCA 4.1 Core Framework IDL: interfacce file management (`CF::File*`) |
 
+## Elenco puntuale dei singoli requisiti SCA minimi
+
+Di seguito il dettaglio operativo dei requisiti minimi, espresso come singoli requisiti verificabili.
+
+### A) Gestione dominio e dispositivi
+
+1. **SCA-REQ-001 — DomainManager presente e raggiungibile**
+   - Il dominio deve esporre un oggetto `CF::DomainManager` risolvibile tramite naming standard.
+2. **SCA-REQ-002 — Lifecycle base del DomainManager**
+   - Devono essere supportate inizializzazione del dominio e terminazione controllata.
+3. **SCA-REQ-003 — DeviceManager registrato nel dominio**
+   - Almeno un `CF::DeviceManager` deve potersi registrare al `DomainManager`.
+4. **SCA-REQ-004 — Visibilità dei dispositivi gestiti**
+   - Il dominio deve poter elencare/riferire i dispositivi gestiti dal `DeviceManager`.
+
+### B) Gestione applicazioni (waveform)
+
+5. **SCA-REQ-005 — Installazione/distribuzione applicazione**
+   - Il dominio deve supportare la creazione/instanziazione applicazione tramite meccanismi `ApplicationFactory`.
+6. **SCA-REQ-006 — Avvio applicazione**
+   - Un’applicazione instanziata deve poter essere portata in esecuzione (`start`).
+7. **SCA-REQ-007 — Arresto applicazione**
+   - Un’applicazione in esecuzione deve poter essere fermata (`stop`).
+8. **SCA-REQ-008 — Rilascio/disinstallazione applicazione**
+   - Devono essere supportati cleanup e rilascio delle risorse applicative.
+
+### C) Modello componenti e proprietà
+
+9. **SCA-REQ-009 — Componenti conformi al modello CF**
+   - Resource/Device/Service devono implementare le interfacce IDL CF applicabili.
+10. **SCA-REQ-010 — Query delle proprietà**
+    - I componenti devono esporre interrogazione proprietà via `CF::PropertySet::query`.
+11. **SCA-REQ-011 — Configurazione delle proprietà**
+    - I componenti devono supportare configurazione runtime via `CF::PropertySet::configure`.
+
+### D) Naming e file management per deploy
+
+12. **SCA-REQ-012 — Lookup oggetti CF**
+    - Oggetti chiave (`DomainManager`, `DeviceManager`, `ApplicationFactory`, applicazioni) devono essere individuabili via naming.
+13. **SCA-REQ-013 — Accesso file di deployment**
+    - Deve essere disponibile accesso ai file necessari al deploy (descriptor/pacchetti) tramite interfacce CF file management.
+14. **SCA-REQ-014 — Operazioni minime su file**
+    - Devono essere disponibili almeno apertura/lettura/chiusura e navigazione minima dei contenuti richiesti dal deployment.
+
+### Criterio di accettazione del sottoinsieme minimo
+
+Il framework è considerato **minimamente conforme** quando tutti i requisiti `SCA-REQ-001 ... SCA-REQ-014` sono soddisfatti.
+
 ## Requisiti rimovibili (non necessari al sottoinsieme minimale)
 
 I seguenti elementi possono essere rimossi in un framework minimale, purché non richiesti dal profilo operativo del prodotto:
