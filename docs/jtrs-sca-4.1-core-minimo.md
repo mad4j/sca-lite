@@ -43,8 +43,10 @@ Di seguito il dettaglio operativo dei requisiti minimi, espresso come singoli re
 
 ### C) Modello componenti e proprietà
 
-9. **SCA-REQ-009 — Componenti conformi al modello CF**
-   - Resource/Device/Service devono implementare le interfacce IDL CF applicabili.
+9. **SCA-REQ-009 — Ruolo CF esplicito per ogni componente**
+   - Ogni componente deployato nel dominio deve essere classificabile in modo univoco come `Resource`, `Device` oppure `Service`.
+   - Per il ruolo dichiarato, il componente deve implementare la corrispondente interfaccia IDL CF standard applicabile.
+   - Non sono ammessi componenti usati dal framework che espongano solo API proprietarie in assenza della controparte CF standard.
 10. **SCA-REQ-010 — Query delle proprietà**
     - I componenti devono esporre interrogazione proprietà via `CF::PropertySet::query`.
 11. **SCA-REQ-011 — Configurazione delle proprietà**
