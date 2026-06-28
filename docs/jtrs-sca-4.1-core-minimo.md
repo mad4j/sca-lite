@@ -43,27 +43,33 @@ Di seguito il dettaglio operativo dei requisiti minimi, espresso come singoli re
 
 ### C) Modello componenti e proprietà
 
-9. **SCA-REQ-009 — Ruolo CF esplicito per ogni componente**
-   - Ogni componente deployato nel dominio deve essere classificabile in modo univoco come `Resource`, `Device` oppure `Service`.
-   - Per il ruolo dichiarato, il componente deve implementare la corrispondente interfaccia IDL CF standard applicabile.
-   - Non sono ammessi componenti usati dal framework che espongano solo API proprietarie in assenza della controparte CF standard.
-10. **SCA-REQ-010 — Query delle proprietà**
+9. **SCA-REQ-009 — Componenti di tipo Resource**
+   - Ogni componente classificato come `Resource` deve implementare l’interfaccia IDL standard `CF::Resource`.
+   - L’interfaccia esposta deve consentire almeno il lifecycle operativo minimo previsto per una resource SCA (`start` e `stop`).
+10. **SCA-REQ-010 — Componenti di tipo Device**
+    - Ogni componente classificato come `Device` deve implementare l’interfaccia IDL standard `CF::Device`.
+    - Poiché `CF::Device` estende `CF::Resource`, il device deve risultare conforme anche ai requisiti previsti per una `Resource`.
+11. **SCA-REQ-011 — Componenti di tipo Service**
+    - Ogni componente classificato come `Service` deve implementare l’interfaccia IDL standard del servizio che dichiara di offrire.
+    - Nel sottoinsieme minimo definito da questo documento, i servizi indispensabili per il deploy devono esporre almeno le interfacce `CF::FileManager` e `CF::File`, ove applicabili.
+    - Non sono ammessi service component usati dal framework che espongano solo API proprietarie in assenza della corrispondente interfaccia standard dichiarata.
+12. **SCA-REQ-012 — Query delle proprietà**
     - I componenti devono esporre interrogazione proprietà via `CF::PropertySet::query`.
-11. **SCA-REQ-011 — Configurazione delle proprietà**
+13. **SCA-REQ-013 — Configurazione delle proprietà**
     - I componenti devono supportare configurazione runtime via `CF::PropertySet::configure`.
 
 ### D) Naming e file management per deploy
 
-12. **SCA-REQ-012 — Lookup oggetti CF**
+14. **SCA-REQ-014 — Lookup oggetti CF**
     - Oggetti chiave (`DomainManager`, `DeviceManager`, `ApplicationFactory`, applicazioni) devono essere individuabili via naming.
-13. **SCA-REQ-013 — Accesso file di deployment**
+15. **SCA-REQ-015 — Accesso file di deployment**
     - Deve essere disponibile accesso ai file necessari al deploy (descriptor/pacchetti) tramite interfacce CF file management.
-14. **SCA-REQ-014 — Operazioni minime su file**
+16. **SCA-REQ-016 — Operazioni minime su file**
     - Devono essere disponibili almeno apertura/lettura/chiusura e navigazione minima dei contenuti richiesti dal deployment.
 
 ### Criterio di accettazione del sottoinsieme minimo
 
-Il framework è considerato **minimamente conforme** quando tutti i requisiti `SCA-REQ-001 ... SCA-REQ-014` sono soddisfatti.
+Il framework è considerato **minimamente conforme** quando tutti i requisiti `SCA-REQ-001 ... SCA-REQ-016` sono soddisfatti.
 
 ## Requisiti rimovibili (non necessari al sottoinsieme minimale)
 
